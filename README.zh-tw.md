@@ -15,18 +15,18 @@
   - [克隆倉庫](#克隆倉庫)
   - [分支](#分支)
     - [對某一個分支比較其他分支](#對某一個分支比較其他分支)
-    - [Comparing Branches](#comparing-branches)
-    - [Compare Branches across Forked Repositories](#compare-branches-across-forked-repositories)
+    - [比較分支](#比較分支)
+    - [比較同一來源但不同倉庫的分支](#比較同一來源但不同倉庫的分支)
   - [Gists](#gists)
   - [Git.io](#gitio)
-  - [Keyboard Shortcuts](#keyboard-shortcuts)
-  - [Line Highlighting in Repositories](#line-highlighting-in-repositories)
-  - [Closing Issues via Commit Messages](#closing-issues-via-commit-messages)
-  - [Cross-Link Issues](#cross-link-issues)
-  - [Locking Conversations](#locking-conversations)
-  - [CI Status on Pull Requests](#ci-status-on-pull-requests)
-  - [Syntax Highlighting in Markdown Files](#syntax-highlighting-in-markdown-files)
-  - [Emojis](#emojis)
+  - [快捷鍵](#快捷鍵)
+  - [強調列](#強調列)
+  - [透過提交訊息來關掉事項](#透過提交訊息來關掉事項)
+  - [事項連結](#事項連結)
+  - [鎖定討論](#鎖定討論)
+  - [Pull Request的CI狀態](#Pull Request的CI狀態)
+  - [Markdown的高亮語法](#Markdown的高亮語法)
+  - [表情符號](#表情符號)
   - [Images/GIFs](#imagesgifs)
     - [Embedding Images in GitHub Wiki](#embedding-images-in-github-wiki)
   - [Quick Quoting](#quick-quoting)
@@ -123,4 +123,203 @@ https://github.com/{user}/{repo}/branches
 從這裡你可以去看比較頁或是按下按鈕來刪除該分支。
 
 ![Compare branches not merged into master in rails/rails repo - https://github.com/rails/rails/branches](http://i.imgur.com/0FEe30z.png)
+
+#### 比較分支
+若想要用GitHub來比較分之，只要把網址改成這樣：
+
+```
+https://github.com/{user}/{repo}/compare/{range}
+```
+
+其中，`{range}`可以是`master...4-1-stable`，意思是比較`master`分支與`4-1-stable`分支。
+
+比方說：
+
+```
+https://github.com/rails/rails/compare/master...4-1-stable
+```
+
+![Rails branch compare example](http://i.imgur.com/tIRCOsK.png)
+
+`{range}` 也可以改成像這樣：
+
+```
+https://github.com/rails/rails/compare/master@{1.day.ago}...master
+https://github.com/rails/rails/compare/master@{2014-10-04}...master
+```
+
+*日期的格式是`YYYY-MM-DD`*
+
+![Another compare example](http://i.imgur.com/5dtzESz.png)
+
+分支也可以在比較視窗和更新視窗中使用：
+
+```
+https://github.com/rails/rails/compare/master...4-1-stable.diff
+https://github.com/rails/rails/compare/master...4-1-stable.patch
+```
+
+[延伸閱讀：*比較不同時間的提交*](https://help.github.com/articles/comparing-commits-across-time)
+
+#### 比較同一來源但不同倉庫的分支
+若要比較同一來源但不同倉庫的分支，把網址改成如下：
+
+```
+https://github.com/{user}/{repo}/compare/{foreign-user}:{branch}...{own-branch}
+```
+
+For example:
+
+```
+https://github.com/rails/rails/compare/byroot:master...master
+```
+
+![Forked branch compare](http://i.imgur.com/Q1W6qcB.png)
+
+### Gists
+[Gists](https://gist.github.com/)是一種很輕鬆的方式存放部份原始碼的工具，而且不需要建立任何倉庫。
+
+![Gist](http://i.imgur.com/VkKI1LC.png?1)
+
+另外，在任何Gist網址結尾處加上`.pibb`（[範例](https://gist.github.com/tiimgreen/10545817.pibb)）可以取得*只限網頁*的版本，這樣就可以內嵌再任何其他網站上。
+
+Gists可以被當城市倉庫，所以他們也可以被克隆。
+
+```bash
+$ git clone https://gist.github.com/tiimgreen/10545817
+```
+
+![Gists](http://i.imgur.com/BcFzabp.png)
+
+這代表，你可以座任何修改並上傳到Gists上：
+
+```bash
+$ git commit
+$ git push
+Username for 'https://gist.github.com': 
+Password for 'https://tiimgreen@gist.github.com': 
+```
+
+但是，Gists並沒有支援目錄。所有的檔案必須要在倉庫的根節點上。
+[延伸閱讀：*建立Gists*](https://help.github.com/articles/creating-gists)
+
+### Git.io
+[Git.io](http://git.io)是Github的短網址。
+
+![Git.io](http://i.imgur.com/6JUfbcG.png?1)
+
+你可以透過純HTTP的方式，像是Curl，來使用：
+
+```bash
+$ curl -i http://git.io -F "url=https://github.com/..."
+HTTP/1.1 201 Created
+Location: http://git.io/abc123
+
+$ curl -i http://git.io/abc123
+HTTP/1.1 302 Found
+Location: https://github.com/...
+```
+
+[延伸閱讀：*Git.io.*](https://github.com/blog/985-git-io-github-url-shortener)
+
+### 快捷鍵
+在任一個倉庫頁面上，快捷鍵讓你可以方便導覽。
+
+ - 按鍵`t`會帶出檔案列表。
+ - 按鍵`w`會帶出分支選擇器。
+ - 按鍵`s`會顯示當前倉庫的搜尋欄。此時按下倒退鍵就會切換到搜尋整個Github。
+ - 按鍵`l`用來編輯已存在事件的標籤。
+ - 按鍵 `y` **當查看文件時** (比方說：`https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.md`)會產生快照。即使原始碼被改變了，你依然可以看得到現在你看到的東西。
+
+瞭解在這葉面上的所有快捷鍵，可以按下`?`：
+
+![Keyboard shortcuts](http://i.imgur.com/y5ZfNEm.png)
+
+[延伸閱讀：搜尋語法](https://help.github.com/articles/search-syntax/)
+
+### 強調列
+在原始碼檔案網址結果加上`#L52`或是簡單的點選列號都會強調該列。
+
+這也可以使用範圍，像是`#L53-L60`，用點選方式則用`shift`來點選那兩行：
+
+```
+https://github.com/rails/rails/blob/master/activemodel/lib/active_model.rb#L53-L60
+```
+
+![Line Highlighting](http://i.imgur.com/8AhjrCz.png)
+
+### 透過提交訊息來關掉事項
+如果一個特別的提交修訂了一個事項，則在事項號碼前面有以下關鍵字（`fix/fixes/fixed`, `close/closes/closed` 或 `resolve/resolves/resolved`），則一旦這個提交到主分支上，該事項會被關掉。
+
+```bash
+$ git commit -m "Fix screwup, fixes #12"
+```
+
+這個會關掉這個事項並會參考到這次提交。
+
+![Closing Repo](http://i.imgur.com/Uh1gZdx.png)
+
+[延伸閱讀：*透過提交關掉事項*](https://help.github.com/articles/closing-issues-via-commit-messages)
+
+### Issue連結
+若你想要連結到同倉庫的其他Issue，只要用`#`後面帶上Issue號碼，Github就會幫你自動連結。
+
+若要連結到其他倉庫的Issue，則使用`{user}/{repo}#ISSUE_NUMBER`。像是： `tiimgreen/toc#12`。
+
+![Cross-Link Issues](https://camo.githubusercontent.com/447e39ab8d96b553cadc8d31799100190df230a8/68747470733a2f2f6769746875622d696d616765732e73332e616d617a6f6e6177732e636f6d2f626c6f672f323031312f736563726574732f7265666572656e6365732e706e67)
+
+### 鎖定討論
+
+Pull Request和Issue現在可以被該倉庫的擁有者或是共事者給鎖定。
+
+![Lock conversation](https://cloud.githubusercontent.com/assets/2723/3221693/bf54dd44-f00d-11e3-8eb6-bb51e825bc2c.png)
+
+這代表不是這專案的共事者將無法評論這個項目。
+
+![Comments locked](https://cloud.githubusercontent.com/assets/2723/3221775/d6e513b0-f00e-11e3-9721-2131cb37c906.png)
+
+[延伸閱讀：*鎖定對話*](https://github.com/blog/1847-locking-conversations)
+
+### Pull Request的CI狀態
+如果設置正確，每次你收到Pull Request，[Travis CI](https://travis-ci.org/) 會自動執行建構，就像每次提交一樣。
+瞭解更多，請參考[Travis CI入門](http://docs.travis-ci.com/user/getting-started/)。
+
+[![Travis CI status](https://cloud.githubusercontent.com/assets/1687642/2700187/3a88838c-c410-11e3-9a46-e65e2a0458cd.png)](https://github.com/octokit/octokit.rb/pull/452)
+
+[延伸閱讀：*提交狀態API*](https://github.com/blog/1227-commit-status-api)
+
+### Markdown的高亮語法
+比方說，要高亮Ruby原始碼在Markdown檔案中，要寫成：
+
+    ```ruby
+    require 'tabbit'
+    table = Tabbit.new('Name', 'Email')
+    table.add_row('Tim Green', 'tiimgreen@gmail.com')
+    puts table.to_s
+    ```
+
+這會產生：
+
+```ruby
+require 'tabbit'
+table = Tabbit.new('Name', 'Email')
+table.add_row('Tim Green', 'tiimgreen@gmail.com')
+puts table.to_s
+```
+
+GitHub使用[Linguist](https://github.com/github/linguist)來執行語言徵測與語法高亮。若要知道哪些關鍵字是合法的，請詳閱[languages YAML file](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)。
+
+[延伸閱讀：*GitHub 喜歡 Markdown.*](https://help.github.com/articles/github-flavored-markdown)
+
+### 表情符號
+表情符號可以使用在Pull Request、Issues、提交訊息、倉庫描述等等，使用 `:name_of_emoji:`。
+
+詳盡的表情符號列表可以在[emoji-cheat-sheet.com](http://www.emoji-cheat-sheet.com/) 或 [scotch-io/All-Github-Emoji-Icons](https://github.com/scotch-io/All-Github-Emoji-Icons)找到。
+
+最常被使用的是：
+1. `:shipit:`
+2. `:sparkles:`
+3. `:-1:`
+4. `:+1:`
+5. `:clap:`
 
