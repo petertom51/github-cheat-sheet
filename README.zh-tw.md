@@ -323,3 +323,60 @@ GitHub使用[Linguist](https://github.com/github/linguist)來執行語言徵測�
 4. `:+1:`
 5. `:clap:`
 
+### 圖像與動畫圖片
+圖像與動畫圖片可以加在評論、README..等等：
+
+```
+![Alt Text](http://www.sheawong.com/wp-content/uploads/2013/08/keephatin.gif)
+```
+
+在倉庫內的純圖像可以直接使用：
+
+```
+![Alt Text](https://github.com/{user}/{repo}/raw/master/path/to/image.gif)
+```
+
+![Peter don't care](http://www.sheawong.com/wp-content/uploads/2013/08/keephatin.gif)
+
+所有的圖像都會被GitHub暫存，所以假設你的主機失聯了，圖像依然可以存取。
+
+#### 在GitHub的文件說明內內嵌圖像
+有很多方是可以在文件說明網頁上內嵌圖像。像是標準的Markdown語法（如下）。還有其他方式可以指明圖像的長寬：
+
+```markdown
+[[ http://www.sheawong.com/wp-content/uploads/2013/08/keephatin.gif | height = 100px ]]
+```
+
+示意如下：
+
+![Just a screenshot](http://i.imgur.com/J5bMf7S.png)
+
+### 快速引用
+當你在一個討論串內，你想要引用之前某人所說得某件事，你可以圈選那些文字並按下`r`鍵，他會複製到你的文字輸入框並加上引用格式標記。
+
+![Quick Quote](https://f.cloud.github.com/assets/296432/124483/b0fa6204-6ef0-11e2-83c3-256c37fa7abc.gif)
+
+[延伸閱讀：*快速引用*](https://github.com/blog/1399-quick-quotes)
+
+### 在評論內貼上剪貼簿內的圖像
+
+_(只在Chrome瀏覽器有效)_
+
+當你拍下了螢幕快照後存到剪貼簿後(mac: `cmd-ctrl-shift-4`), 你可以很簡單的貼上(`cmd-v / ctrl-v`) 這個圖像到評論區內，而他會自動上傳到GitHub。
+
+![Pasting Clipboard Image to Comments](https://cloud.githubusercontent.com/assets/39191/5794265/39c9b65a-9f1b-11e4-9bc7-04e41f59ea5f.png)
+
+[延伸閱讀：*issue附件*](https://help.github.com/articles/issue-attachments)
+
+### 快速宣告版權Quick Licensing
+當建立倉庫時，GitHub會給你幾個選項來加上預設的版權宣告：
+
+![License](http://i.imgur.com/Chqj4Fg.png)
+
+你也可以透過網頁介面來加上版權宣告的檔案。當檔案名稱是`LICENSE`時，你就可以取得那些範本：
+
+![License](http://i.imgur.com/fTjQict.png)
+
+這也適用於`.gitignore`。
+
+[延伸閱讀*公開源碼版權宣告*](https://help.github.com/articles/open-source-licensing)
